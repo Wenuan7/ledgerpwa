@@ -21,6 +21,77 @@ interface LedgerDB extends DBSchema {
 }
 
 const DB_VERSION = 1
+const MIRROR_VERSION = 1
+const recoveredArchives = new Set<string>()
+
+type ArchiveMirrorV1 = {
+  version: 1
+  archiveId: string
+  savedAt: string
+  data: {
+    transactions: Transaction[]
+    categories: Category[]
+    tags: Tag[]
+    categoryBudgets: CategoryBudget[]
+  }
+}
+
+function mirrorStorageKey(archiveId: string) {
+  return archiveId === 'default' ? 'ledger_mirror_v1' : `ledger_mirror_v1__${archiveId}`
+}
+
+function safeReadMirror(archiveId: string): ArchiveMirrorV1 | null {
+  try {
+    const raw = localStorage.getItem(mirrorStorageKey(archiveId))
+    if (!raw) return null
+    const parsed = JSON.parse(raw) as ArchiveMirrorV1
+    if (!parsed || parsed.version !== MIRROR_VERSION || parsed.archiveId !== archiveId) return null
+    return parsed
+  } catch {
+    return null
+  }
+}
+
+async function persistMirrorByArchiveId(archiveId: string) {
+  const db = await getDbByArchiveId(archiveId)
+  const [transactions, categories, tags, categoryBudgets] = await Promise.all([
+    db.getAll('transactions'),
+    db.getAll('categories'),
+    db.getAll('tags'),
+    db.getAll('categoryBudgets'),
+  ])
+  const payload: ArchiveMirrorV1 = {
+    version: MIRROR_VERSION,
+    archiveId,
+    savedAt: nowIso(),
+    data: { transactions, categories, tags, categoryBudgets },
+  }
+  try {
+    localStorage.setItem(mirrorStorageKey(archiveId), JSON.stringify(payload))
+  } catch {
+    // ignore storage quota/permission errors, app can still work with IndexedDB
+  }
+}
+
+async function restoreMirrorIfNeeded(archiveId: string) {
+  if (recoveredArchives.has(archiveId)) return
+  recoveredArchives.add(archiveId)
+
+  const mirror = safeReadMirror(archiveId)
+  if (!mirror) return
+
+  const db = await getDbByArchiveId(archiveId)
+  const existingCount = await db.count('transactions')
+  if (existingCount > 0) return
+  if (mirror.data.transactions.length === 0) return
+
+  const tx = db.transaction(['transactions', 'categories', 'tags', 'categoryBudgets'], 'readwrite')
+  for (const item of mirror.data.categories) tx.objectStore('categories').put(item)
+  for (const item of mirror.data.tags) tx.objectStore('tags').put(item)
+  for (const item of mirror.data.categoryBudgets) tx.objectStore('categoryBudgets').put(item)
+  for (const item of mirror.data.transactions) tx.objectStore('transactions').put(item)
+  await tx.done
+}
 
 async function getDbByArchiveId(archiveId: string) {
   const name = getDbNameForArchive(archiveId)
@@ -40,7 +111,9 @@ async function getDbByArchiveId(archiveId: string) {
 }
 
 async function getDb() {
-  return getDbByArchiveId(getActiveArchiveId())
+  const archiveId = getActiveArchiveId()
+  await restoreMirrorIfNeeded(archiveId)
+  return getDbByArchiveId(archiveId)
 }
 
 export async function ensureSeedData() {
@@ -82,6 +155,7 @@ export async function ensureSeedData() {
 export type NewTransactionInput = Omit<Transaction, 'id' | 'createdAt' | 'updatedAt'>
 
 export async function addTransaction(input: NewTransactionInput) {
+  const archiveId = getActiveArchiveId()
   const db = await getDb()
   const now = nowIso()
   const t: Transaction = {
@@ -91,22 +165,27 @@ export async function addTransaction(input: NewTransactionInput) {
     updatedAt: now,
   }
   await db.put('transactions', t)
+  await persistMirrorByArchiveId(archiveId)
   return t
 }
 
 export async function updateTransaction(input: Transaction) {
+  const archiveId = getActiveArchiveId()
   const db = await getDb()
   const next: Transaction = {
     ...input,
     updatedAt: nowIso(),
   }
   await db.put('transactions', next)
+  await persistMirrorByArchiveId(archiveId)
   return next
 }
 
 export async function deleteTransaction(id: string) {
+  const archiveId = getActiveArchiveId()
   const db = await getDb()
   await db.delete('transactions', id)
+  await persistMirrorByArchiveId(archiveId)
 }
 
 export async function listRecentTransactions(limit: number) {
@@ -124,6 +203,7 @@ export async function countTransactions() {
 export async function clearTransactionsForArchive(archiveId: string) {
   const db = await getDbByArchiveId(archiveId)
   await db.clear('transactions')
+  await persistMirrorByArchiveId(archiveId)
 }
 
 function randInt(min: number, max: number) {
@@ -198,18 +278,23 @@ export async function ensureSampleTransactionsIfEmpty() {
   const count = await db.count('transactions')
   if (count > 0) return
   await generateSampleTransactionsForLast3Days()
+  await persistMirrorByArchiveId('default')
 }
 
 export async function clearStore(store: StoreName) {
+  const archiveId = getActiveArchiveId()
   const db = await getDb()
   await db.clear(store)
+  await persistMirrorByArchiveId(archiveId)
 }
 
 export async function bulkPut<T extends StoreName>(store: T, items: Array<LedgerDB[T]['value']>) {
+  const archiveId = getActiveArchiveId()
   const db = await getDb()
   const tx = db.transaction(store, 'readwrite')
   for (const item of items) tx.store.put(item as any)
   await tx.done
+  await persistMirrorByArchiveId(archiveId)
 }
 
 export async function dumpAll() {
