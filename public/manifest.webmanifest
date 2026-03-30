@@ -2,14 +2,14 @@
   "name": "LedgerPWA",
   "short_name": "Ledger",
   "description": "Ledger progressive web app",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "/ledgerpwa/",
+  "scope": "/ledgerpwa/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0f172a",
   "icons": [
     {
-      "src": "/favicon.svg",
+      "src": "/ledgerpwa/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
