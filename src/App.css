@@ -1,0 +1,1094 @@
+.app {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 12px;
+  padding-bottom: 92px;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 650;
+  color: var(--text-h);
+}
+
+.errorBanner {
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(239, 68, 68, 0.55);
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--text-h);
+  font-size: 13px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.settingsActions {
+  margin-top: 12px;
+  justify-content: flex-start;
+}
+
+.settingsBottomRow {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.resetMainBtn {
+  margin-top: 0;
+}
+
+.travelModeRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.travelModeHint {
+  font-size: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.btnTravel {
+  flex-shrink: 0;
+}
+
+.travelArchivePanel {
+  max-height: min(78vh, 520px);
+}
+
+.archiveList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: min(42vh, 320px);
+  overflow-y: auto;
+}
+
+.archiveRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--code-bg);
+  color: var(--text-h);
+  font-size: 14px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.archiveSelectBtn {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.archiveRowActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.archiveActionBtn {
+  padding: 6px 8px;
+  font-size: 12px;
+}
+
+.archiveActionBtn.btnDanger {
+  margin-top: 0;
+}
+
+.archiveRowActive {
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+}
+
+.archiveRowName {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.archiveRowBadge {
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 650;
+  flex-shrink: 0;
+}
+
+.archiveCreateActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.archiveCreateActions .btnPrimary {
+  width: auto;
+  flex: 1;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: var(--shadow);
+}
+
+.cardTitle {
+  font-weight: 650;
+  color: var(--text-h);
+  margin-bottom: 10px;
+}
+
+.addPageCard {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.addPageTitle {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 14px;
+}
+
+.addPageGrid {
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fieldWide {
+  grid-column: 1 / -1;
+}
+
+label {
+  font-size: 12px;
+  color: var(--text);
+}
+
+input,
+select {
+  padding: 10px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--code-bg);
+  color: var(--text-h);
+  outline: none;
+  font-size: 16px;
+}
+
+.pickerTrigger {
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--code-bg);
+  color: var(--text-h);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.quickInput {
+  font-size: 16px;
+}
+
+.btn,
+.btnPrimary,
+.btnGhost {
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+  background: var(--social-bg);
+  color: var(--text-h);
+  cursor: pointer;
+  user-select: none;
+}
+
+.btnPrimary {
+  width: 100%;
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
+  color: var(--text-h);
+  font-weight: 650;
+}
+
+.btn:disabled,
+.btnPrimary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btnDanger {
+  margin-top: 8px;
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.55);
+  color: #ef4444;
+}
+
+.btnGhost {
+  position: relative;
+  overflow: hidden;
+}
+
+.fileInput {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dayList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.daySection {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.dayHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.dayTitle {
+  color: var(--text-h);
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.dayTotals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.dayTotal {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--code-bg);
+}
+
+.dayTotalExpense {
+  color: #ef4444;
+}
+
+.dayTotalIncome {
+  color: #22c55e;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+}
+
+.rowTop {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.rowBottom {
+  font-size: 12px;
+  color: var(--text);
+  margin-top: 4px;
+}
+
+.monthOverview {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  margin: -10px -10px 12px;
+  padding: 10px 10px 12px;
+  border-radius: 12px 12px 0 0;
+  background: var(--bg);
+  color: var(--text-h);
+  opacity: 1;
+  border-bottom: 1px solid var(--border);
+}
+
+.monthPickerTrigger {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  cursor: pointer;
+  color: inherit;
+  line-height: 1.1;
+}
+
+.monthPickerYear {
+  font-size: 16px;
+  opacity: 0.78;
+  font-weight: 600;
+}
+
+.monthPickerMonth {
+  font-size: clamp(38px, 10vw, 46px);
+  line-height: 0.96;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.monthPickerMark {
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+.monthTotals {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.monthTotalBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.monthTotalLabel {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.monthTotalValue {
+  font-size: clamp(36px, 9vw, 44px);
+  line-height: 0.98;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+.monthPickerOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.monthPickerPanel {
+  width: min(420px, 100%);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  background: var(--bg);
+  box-shadow: var(--shadow);
+}
+
+.monthPickerTitle {
+  color: var(--text-h);
+  font-weight: 650;
+  margin-bottom: 10px;
+}
+
+.monthPickerWheels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.monthWheel {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px;
+  background: var(--code-bg);
+}
+
+.monthWheelLabel {
+  font-size: 12px;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.monthWheelSelect {
+  width: 100%;
+}
+
+.categoryPickerGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.categoryChip {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 6px;
+  background: var(--social-bg);
+  color: var(--text-h);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.categoryChipActive {
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
+}
+
+.categoryChipIcon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.categoryChipText {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.badge {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--code-bg);
+}
+
+.tagLine {
+  display: inline-flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tagPill {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--social-bg);
+}
+
+.category {
+  color: var(--text-h);
+  font-weight: 650;
+}
+
+.note {
+  color: var(--text);
+}
+
+.money {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  min-width: 110px;
+  text-align: right;
+}
+
+.moneyExpense {
+  color: #ef4444;
+}
+
+.moneyIncome {
+  color: #22c55e;
+}
+
+.muted {
+  color: var(--text);
+  font-size: 13px;
+}
+
+.footer {
+  margin-top: 16px;
+}
+
+.fabQuick {
+  position: fixed;
+  right: 16px;
+  bottom: calc(74px + env(safe-area-inset-bottom));
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--text-h);
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  z-index: 55;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.budgetBlock {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.budgetList {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.budgetItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.02);
+  font-size: 13px;
+}
+
+.budgetDeleteBtn {
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.budgetToast {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: calc(78px + env(safe-area-inset-bottom));
+  z-index: 58;
+  border: 1px solid var(--accent-border);
+  border-radius: 12px;
+  background: var(--accent-bg);
+  color: var(--text-h);
+  padding: 10px 12px;
+  box-shadow: var(--shadow);
+}
+
+.budgetToastTitle {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.budgetToastText {
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+.budgetToastClose {
+  margin-top: 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--social-bg);
+  color: var(--text-h);
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.tabBar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.tabItem {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 8px;
+  background: var(--social-bg);
+  color: var(--text-h);
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.tabItemActive {
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
+}
+
+.reportNav {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  margin: -10px -10px 10px;
+  padding: 10px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px 12px 0 0;
+}
+
+.reportSwitch {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.reportSelectors {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.reportStats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.reportStatCard {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.reportStatLabel {
+  font-size: 12px;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.reportStatValue {
+  margin-top: 0;
+  font-size: 15px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.reportIncome {
+  color: #22c55e;
+}
+
+.reportExpense {
+  color: #ef4444;
+}
+
+.reportSection {
+  margin-top: 12px;
+}
+
+.reportExpenseBarsWrap {
+  overflow: visible;
+  box-sizing: border-box;
+  padding: 0 8px;
+}
+
+.reportExpenseBars {
+  display: grid;
+  gap: 5px;
+  align-items: end;
+  height: 138px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.reportExpenseBarCol {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 6px;
+  min-width: 0;
+  width: 100%;
+}
+
+/* 轨道与数据柱单独限宽并居中，避免圆角在窄格里视觉堆叠 */
+.reportExpenseBarTrack {
+  box-sizing: border-box;
+  height: 110px;
+  width: min(7px, 100%);
+  margin-inline: auto;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  background: var(--code-bg);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.reportExpenseBarFill {
+  width: 100%;
+  min-width: 0;
+  border-radius: 2px 2px 0 0;
+  background: linear-gradient(180deg, rgba(239, 68, 68, 0.75) 0%, rgba(139, 92, 246, 0.75) 100%);
+}
+
+.reportExpenseBarLabel {
+  display: block;
+  box-sizing: border-box;
+  width: 3ch;
+  min-width: 3ch;
+  max-width: 100%;
+  margin-inline: auto;
+  text-align: center;
+  font-size: 10px;
+  color: var(--text);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  overflow: hidden;
+}
+
+.reportExpenseBarLabelMuted {
+  opacity: 0;
+}
+
+.reportPieSection {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.reportPieWrap {
+  position: relative;
+  width: 136px;
+  height: 136px;
+  margin: 0 auto;
+}
+
+.reportPie {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+}
+
+.reportPieHole {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.reportPieDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.reportPieDetailItem {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.reportPieDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.reportPieDetailText {
+  min-width: 0;
+  flex: 1;
+}
+
+.reportPieDetailHead {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-h);
+}
+
+.reportList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.reportBarRow {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.reportBarHead {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.reportBarTrack {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--code-bg);
+  overflow: hidden;
+}
+
+.reportBarFill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent-bg);
+}
+
+.reportTrend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 320px;
+  overflow: auto;
+}
+
+.reportTrendRow {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 8px;
+  align-items: center;
+}
+
+.reportTrendLabel {
+  font-size: 12px;
+  color: var(--text);
+}
+
+.reportTrendBars {
+  display: grid;
+  gap: 6px;
+}
+
+.reportTrendTrack {
+  height: 7px;
+  border-radius: 999px;
+  background: var(--code-bg);
+  overflow: hidden;
+}
+
+.reportTrendIncome {
+  height: 100%;
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.8);
+}
+
+.reportTrendExpense {
+  height: 100%;
+  border-radius: 999px;
+  background: rgba(239, 68, 68, 0.85);
+}
+
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .monthPickerYear {
+    font-size: 14px;
+  }
+
+  .monthPickerMonth {
+    font-size: 42px;
+  }
+
+  .monthTotalLabel {
+    font-size: 12px;
+  }
+
+  .monthTotalValue {
+    font-size: 24px;
+    line-height: 1.05;
+  }
+
+  .categoryPickerGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .reportSelectors {
+    grid-template-columns: 1fr;
+  }
+
+  .reportPieSection {
+    grid-template-columns: 1fr;
+  }
+
+  .reportPieWrap {
+    width: 124px;
+    height: 124px;
+  }
+}
+
+@media (max-width: 430px) {
+  .app {
+    padding: 8px;
+    padding-bottom: 88px;
+  }
+
+  .tabItem {
+    padding: 8px 6px;
+    font-size: 13px;
+  }
+
+  .reportNav {
+    margin: -10px -10px 8px;
+    padding: 8px;
+  }
+
+  .reportSwitch {
+    gap: 6px;
+  }
+
+  .reportSelectors {
+    margin-top: 8px;
+    gap: 6px;
+  }
+
+  .reportStatCard {
+    padding: 6px;
+    gap: 6px;
+  }
+
+  .reportStatLabel {
+    font-size: 11px;
+  }
+
+  .reportStatValue {
+    font-size: 13px;
+  }
+
+  .monthTotalLabel {
+    font-size: 11px;
+  }
+
+  .reportExpenseBars {
+    gap: 4px;
+    height: 122px;
+  }
+
+  .reportExpenseBarTrack {
+    height: 94px;
+    width: min(6px, 100%);
+    border-radius: 2px;
+  }
+
+  .reportExpenseBarFill {
+    border-radius: 2px 2px 0 0;
+  }
+
+  .reportExpenseBarLabel {
+    font-size: 9px;
+  }
+
+  .reportPieSection {
+    gap: 8px;
+  }
+
+  .reportPieDetailItem {
+    padding: 6px;
+  }
+
+  .reportPieDetailHead {
+    font-size: 11px;
+  }
+}
