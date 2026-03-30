@@ -7,7 +7,6 @@ import {
   countTransactions,
   deleteTransaction,
   ensureSeedData,
-  ensureSampleTransactionsIfEmpty,
   listRecentTransactions,
   updateTransaction,
 } from './lib/db'
@@ -117,7 +116,6 @@ function App() {
         setError(null)
         ensureArchivesMetaInitialized()
         await ensureSeedData()
-        await ensureSampleTransactionsIfEmpty()
         await refresh()
       } catch (e) {
         const msg = e instanceof Error ? e.message : String(e)
