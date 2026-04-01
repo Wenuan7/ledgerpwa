@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import type { Transaction } from '../lib/types'
 import { CATEGORY_PICKER_OPTIONS, deriveDirectionByCategory, normalizeCategory } from '../lib/categories'
 import { CategoryPicker } from '../components/CategoryPicker'
+import { datetimeLocalToIso, isoToDatetimeLocalValue } from '../lib/dateLocal'
 
 function dayKeyLocal(iso: string) {
   const d = new Date(iso)
@@ -44,6 +45,7 @@ export function DetailsPage({
   const [editingAmount, setEditingAmount] = useState('')
   const [editingCategory, setEditingCategory] = useState('')
   const [editingNote, setEditingNote] = useState('')
+  const [editingOccurredAt, setEditingOccurredAt] = useState('')
   const [editPickerOpen, setEditPickerOpen] = useState(false)
   const [editingDirection, setEditingDirection] = useState<Transaction['direction']>('expense')
 
@@ -114,6 +116,7 @@ export function DetailsPage({
       amount: n,
       category: normalizeCategory(editingDirection, editingCategory),
       note: editingNote.trim() || undefined,
+      date: datetimeLocalToIso(editingOccurredAt),
     })
     setEditPickerOpen(false)
     setEditing(null)
@@ -173,6 +176,7 @@ export function DetailsPage({
                       setEditingAmount(t.amount.toFixed(2))
                       setEditingCategory(normalizeCategory(t.direction, t.category))
                       setEditingNote(t.note ?? '')
+                      setEditingOccurredAt(isoToDatetimeLocalValue(t.date))
                     }}
                   >
                     <div className="rowMain">
@@ -282,6 +286,14 @@ export function DetailsPage({
                 <button type="button" className="pickerTrigger" onClick={() => setEditPickerOpen(true)}>
                   {editingCategory}
                 </button>
+              </div>
+              <div className="field fieldWide">
+                <label>发生时间</label>
+                <input
+                  type="datetime-local"
+                  value={editingOccurredAt}
+                  onChange={(e) => setEditingOccurredAt(e.target.value)}
+                />
               </div>
               <div className="field fieldWide">
                 <label>备注</label>

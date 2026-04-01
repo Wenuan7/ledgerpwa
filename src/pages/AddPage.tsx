@@ -9,6 +9,7 @@ import {
 } from '../lib/categories'
 import { CategoryPicker } from '../components/CategoryPicker'
 import { budgetRulesStorageKey } from '../lib/archives'
+import { datetimeLocalToIso, nowDatetimeLocalValue } from '../lib/dateLocal'
 
 type BudgetTargetType = 'total' | 'category'
 type BudgetRule = {
@@ -35,12 +36,19 @@ export function AddPage({
   onAdd,
 }: {
   archiveId: string
-  onAdd: (input: { direction: Direction; amount: number; category: string; note?: string }) => Promise<void>
+  onAdd: (input: {
+    direction: Direction
+    amount: number
+    category: string
+    note?: string
+    date?: string
+  }) => Promise<void>
 }) {
   const [direction, setDirection] = useState<Direction>('expense')
   const [amount, setAmount] = useState<string>('')
   const [category, setCategory] = useState<string>('餐饮')
   const [note, setNote] = useState<string>('')
+  const [occurredAtLocal, setOccurredAtLocal] = useState<string>(() => nowDatetimeLocalValue())
   const [pickerOpen, setPickerOpen] = useState(false)
   const [budgetRules, setBudgetRules] = useState<BudgetRule[]>(() => loadBudgetRules(archiveId))
   const [budgetType, setBudgetType] = useState<BudgetTargetType>('total')
@@ -92,9 +100,11 @@ export function AddPage({
       amount: Number(amount),
       category: normalizeCategory(direction, category),
       note: note.trim() || undefined,
+      date: datetimeLocalToIso(occurredAtLocal),
     })
     setAmount('')
     setNote('')
+    setOccurredAtLocal(nowDatetimeLocalValue())
   }
 
   return (
@@ -124,6 +134,10 @@ export function AddPage({
         <div className="field">
           <label>金额</label>
           <input inputMode="decimal" placeholder="输入金额，如 28.8" value={amount} onChange={(e) => setAmount(e.target.value)} />
+        </div>
+        <div className="field fieldWide">
+          <label>发生时间</label>
+          <input type="datetime-local" value={occurredAtLocal} onChange={(e) => setOccurredAtLocal(e.target.value)} />
         </div>
         <div className="field fieldWide">
           <label>备注</label>

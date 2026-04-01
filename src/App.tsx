@@ -126,7 +126,7 @@ function App() {
     })()
   }, [archiveVersion])
 
-  async function onAdd(input: { direction: Direction; amount: number; category: string; note?: string }) {
+  async function onAdd(input: { direction: Direction; amount: number; category: string; note?: string; date?: string }) {
     try {
       setError(null)
       await addTransaction({
@@ -134,7 +134,7 @@ function App() {
         amount: input.amount,
         category: input.category,
         note: input.note,
-        date: new Date().toISOString(),
+        date: input.date ?? new Date().toISOString(),
         rawInput: undefined,
         tags: [],
       })
