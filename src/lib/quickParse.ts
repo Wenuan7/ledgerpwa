@@ -110,7 +110,21 @@ const expenseCategoryRules: Array<{ category: string; keywords: string[] }> = [
   },
   {
     category: '运动',
-    keywords: ['运动', '健身', '跑步', '球馆', '游泳', '瑜伽', '羽毛球', '篮球', '器材', '私教', '训练', '课程'],
+    keywords: [
+      '运动',
+      '健身',
+      '跑步',
+      '球馆',
+      '游泳',
+      '瑜伽',
+      '羽毛球',
+      '篮球',
+      '器材',
+      '私教',
+      '训练',
+      '课程',
+      '卡丁车',
+    ],
   },
   {
     category: '旅行',
